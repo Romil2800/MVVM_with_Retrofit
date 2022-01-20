@@ -22,7 +22,7 @@ class CharacterRepository(
 
     suspend fun getCharacter(page: Int) {
 
-        if (!NetworkUtils.isInternetAvailable(applicationContext)) {
+        if (NetworkUtils.isInternetAvailable(applicationContext)) {
             try {
                 val result = characterService.getCharacter(page)
                 if (result?.body() != null) {

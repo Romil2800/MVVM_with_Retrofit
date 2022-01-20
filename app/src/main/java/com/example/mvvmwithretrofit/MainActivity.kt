@@ -11,6 +11,7 @@ import com.example.mvvmwithretrofit.viewmodels.MainViewModelFactory
 import com.example.mvvmwithretrofit.viewmodels.MainViewModels
 import android.view.Menu
 import android.view.MenuInflater
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmwithretrofit.adapter.DataAdapter
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModels = ViewModelProvider(
             this,
-            MainViewModelFactory(repository,pageNum)
+            MainViewModelFactory(repository)
         ).get(MainViewModels::class.java)
 
 
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
                     it.data?.let {
 
                         var character=it.results
+                        Toast.makeText(this, it.results.size.toString(), Toast.LENGTH_SHORT).show()
                         layoutManager(character)
                         getList(character)
                     }
