@@ -1,25 +1,27 @@
 package com.example.mvvmwithretrofit.database
 
 import android.content.Context
+import androidx.databinding.adapters.Converters
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.mvvmwithretrofit.models.Result
 
 
-@Database(entities = [Result::class], version = 2)
+@Database(entities = [Result::class], version = 1)
 abstract class CharacterDatabase:RoomDatabase() {
     abstract fun characterDao():CharacterDAO
 
     companion object{
 
-        val migration_1_2=object :Migration(1,2){
-            override fun migrate(database: SupportSQLiteDatabase) {
-                database.execSQL("ALTER TABLE characters ADD COLUMN id INTEGER NOT NULL DEFAULT(1)")
-            }
-        }
+//        val migration_2_3=object :Migration(2,3){
+//            override fun migrate(database: SupportSQLiteDatabase) {
+//                database.execSQL("DROP TABLE characters" )
+//            }
+//        }
 
         @Volatile
         private var INSTANCE: CharacterDatabase? = null
@@ -29,8 +31,8 @@ abstract class CharacterDatabase:RoomDatabase() {
                 synchronized(this){
                     INSTANCE = Room.databaseBuilder(context,
                         CharacterDatabase::class.java,
-                        "characterDB")
-                        .addMigrations(migration_1_2)
+                        "charactersDB")
+                        //.addMigrations(migration_2_3)
                         .build()
                 }
             }

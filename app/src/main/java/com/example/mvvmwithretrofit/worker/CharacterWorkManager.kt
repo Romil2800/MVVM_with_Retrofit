@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class CharacterWorkManager(private val context: Context,params: WorkerParameters):
     Worker(context,params) {
     override fun doWork(): Result {
-        Log.d("roil","Work")
+        Log.d("workManager","Work")
        val repository=(context as CharacterApplication).characterRepository
         CoroutineScope(Dispatchers.IO).launch {
             repository.getCharacterBackground()

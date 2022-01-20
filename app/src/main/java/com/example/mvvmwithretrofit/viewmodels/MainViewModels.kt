@@ -9,11 +9,11 @@ import com.example.mvvmwithretrofit.repository.Response
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainViewModels(private val repository: CharacterRepository) : ViewModel() {
+class MainViewModels(private val repository: CharacterRepository,val page:Int) : ViewModel() {
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getCharacter(1)
+            repository.getCharacter(page)
         }
     }
 

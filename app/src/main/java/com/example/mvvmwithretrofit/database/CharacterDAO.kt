@@ -12,9 +12,9 @@ interface CharacterDAO {
     @Insert
     suspend fun addCharacter(character:List<Result>)
 
-    @Query("SELECT * FROM characters")
+    @Query("SELECT * FROM character")
     suspend fun getCharacters():List<Result>
 
-    @Query("DELETE FROM characters")
+    @Query("DELETE FROM character")
     suspend fun deleteAllData()
 }
